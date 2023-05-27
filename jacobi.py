@@ -99,15 +99,23 @@ def jacobi(A, b, k):
 
     return H, np.linalg.norm(H[-1]), x
 
-
+####* FUNCION PRINCIPAL *####
 def main():
+    #* Presentación del TP
+    print("Métodos Numéricos: TP 2 - Método de Jacobi")
+    print("Integrantes:")
+    print("    - Venturini, Tomás")
+    print("    - Narvaez, Agustín")
+
+    print("Para trabajar con este método, se debe ingresar una matriz A simétrica de tamaño n y un vector b sobre los cuales iteraremos k veces.")
+    #* Solicito los datos de la matriz
     A, b, k = input_data()
 
-    # Conversión de los datos de entrada a valores numéricos
+    #* Conversión de los datos de entrada a valores numéricos
     A = np.array(A, dtype=float)
     b = np.array(b, dtype=float)
 
-    # Ejecución del método de Jacobi
+    #* Ejecución del método de Jacobi
     try:
         H, norm, x = jacobi(A, b, k)
         print("\nMatriz de iteración H:")
@@ -130,7 +138,6 @@ def main():
 
     except Exception as e:
         print("Error:", str(e))
-
 
 if __name__ == "__main__":
     main()
