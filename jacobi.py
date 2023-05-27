@@ -8,6 +8,19 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 options = {"floatfmt": ".0f", "stralign": "center"}
 
 
+def generar_matriz_convergente(n):
+    # Generar una matriz aleatoria de tamaño n x n
+    A = np.random.rand(n, n)
+
+    # Sumar la matriz transpuesta para lograr simetría
+    A = A + A.T
+
+    # Sumar una matriz diagonal dominante
+    A = A + n * np.eye(n)
+
+    return A
+
+
 def es_apta_para_jacobi(A):
     """
     Verifica si la matriz A es apta para aplicar el método de Jacobi.
