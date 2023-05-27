@@ -67,10 +67,10 @@ def input_data():
     print("    2. Ingresar matriz manualmente")
 
     option = input("Ingrese una opción: ")
-    """ if option == "1":
-        A = np.random.randint(1, 10, (n, n))
-        A = (A + A.T) / 2 """
-    A = input_matrix(n)
+    if option == "1":
+        A = generar_matriz_convergente(n)
+    elif option == "2":
+        A = input_matrix(n)
 
     print("Ingrese el vector b:")
     b = input().split()
