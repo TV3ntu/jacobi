@@ -49,7 +49,14 @@ def input_data():
     :return:
     """
     n = int(input("Ingrese el valor de n (tamaño de la matriz): "))
+    print("Menú:")
+    print("    1. Generar matriz aleatoria")
+    print("    2. Ingresar matriz manualmente")
 
+    option = input("Ingrese una opción: ")
+    """ if option == "1":
+        A = np.random.randint(1, 10, (n, n))
+        A = (A + A.T) / 2 """
     A = input_matrix(n)
 
     print("Ingrese el vector b:")
@@ -124,6 +131,8 @@ def main():
     print("Integrantes:")
     print("    - Venturini, Tomás")
     print("    - Narvaez, Agustín")
+
+
 
     print("Para trabajar con este método, se debe ingresar una matriz A simétrica de tamaño n y un vector b sobre los cuales iteraremos k veces.")
     #* Solicito los datos de la matriz
