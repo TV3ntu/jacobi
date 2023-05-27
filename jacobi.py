@@ -111,7 +111,7 @@ def jacobi(A, b, k):
     """
     n = len(A)
     x = np.zeros(n)
-    H = np.zeros((k, n, n))
+    H = np.zeros((k, n))
 
     for i in range(k):
         D = np.diag(A)  # Diagonal de A
@@ -137,25 +137,25 @@ def jacobi(A, b, k):
 
     return H, np.linalg.norm(H[-1]), x
 
+
 ####* FUNCION PRINCIPAL *####
 def main():
-    #* Presentación del TP
+    # * Presentación del TP
     print("Métodos Numéricos: TP 2 - Método de Jacobi")
     print("Integrantes:")
     print("    - Venturini, Tomás")
     print("    - Narvaez, Agustín")
 
-
-
-    print("Para trabajar con este método, se debe ingresar una matriz A simétrica de tamaño n y un vector b sobre los cuales iteraremos k veces.")
-    #* Solicito los datos de la matriz
+    print(
+        "Para trabajar con este método, se debe ingresar una matriz A simétrica de tamaño n y un vector b sobre los cuales iteraremos k veces.")
+    # * Solicito los datos de la matriz
     A, b, k = input_data()
 
-    #* Conversión de los datos de entrada a valores numéricos
+    # * Conversión de los datos de entrada a valores numéricos
     A = np.array(A, dtype=float)
     b = np.array(b, dtype=float)
 
-    #* Ejecución del método de Jacobi
+    # * Ejecución del método de Jacobi
     try:
         exact_solution, approx_solution, norm_difference = solve(A, b, k)
 
@@ -169,6 +169,7 @@ def main():
 
     except Exception as e:
         print("Error:", str(e))
+
 
 if __name__ == "__main__":
     main()
