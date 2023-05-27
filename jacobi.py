@@ -1,10 +1,23 @@
 import numpy as np
+import warnings
+from tabulate import tabulate
+
+# Ignorar advertencias de numpy
+warnings.simplefilter(action='ignore', category=FutureWarning)
+# Establecer opciones de alineación
+options = {"floatfmt": ".0f", "stralign": "center"}
 
 
 def es_apta_para_jacobi(A):
+    """
+    Verifica si la matriz A es apta para aplicar el método de Jacobi.
+    :param A:
+    :return:
+    """
     n = A.shape[0]  # Tamaño de la matriz A
     diagonal = np.abs(A.diagonal())  # Valores absolutos de los elementos de la diagonal
-    resto = np.sum(np.abs(A), axis=1) - diagonal  # Suma de los valores absolutos de los elementos de cada fila, excluyendo la diagonal
+    resto = np.sum(np.abs(A),
+                   axis=1) - diagonal  # Suma de los valores absolutos de los elementos de cada fila, excluyendo la diagonal
 
     for i in range(n):
         if diagonal[i] <= resto[i]:
@@ -46,7 +59,7 @@ def input_data():
     return A, b, k
 
 
-def compare_solution(A, b, k):
+def solve(A, b, k):
     """
     Compara la solución exacta del sistema con la solución aproximada obtenida con el método de Jacobi.
     :param A:
@@ -56,7 +69,12 @@ def compare_solution(A, b, k):
     """
     exact_solution = np.linalg.solve(A, b)  # Solución exacta del sistema
 
-    H, _, approx_solution = jacobi(A, b, k)  # Solución aproximada con Jacobi
+    H, norm, approx_solution = jacobi(A, b, k)  # Solución aproximada con Jacobi
+
+    print("\nMatriz de iteración H:")
+    print(tabulate(H, tablefmt="fancy_grid"))
+
+    print("\nNorma de la matriz de iteración H:", norm)
 
     norm_difference = np.linalg.norm(exact_solution - approx_solution)  # Norma de la diferencia entre las soluciones
 
@@ -81,11 +99,11 @@ def jacobi(A, b, k):
 
         print(f"Iteración {i + 1}:")
         print("Matriz A:")
-        print(A)
-        print("Matriz diagonal D:")
+        print(tabulate(A, tablefmt="fancy_grid"))
+        print("Diagonal D:")
         print(D)
         print("Matriz resto R:")
-        print(R)
+        print(tabulate(R, tablefmt="fancy_grid"))
         print("Vector solución x:")
         print(x)
 
@@ -117,16 +135,7 @@ def main():
 
     #* Ejecución del método de Jacobi
     try:
-        H, norm, x = jacobi(A, b, k)
-        print("\nMatriz de iteración H:")
-        print(H)
-
-        print("\nNorma de la matriz de iteración H:", norm)
-
-        print("\nVector aproximado x:")
-        print(x)
-
-        exact_solution, approx_solution, norm_difference = compare_solution(A, b, k)
+        exact_solution, approx_solution, norm_difference = solve(A, b, k)
 
         print("Solución exacta del sistema:")
         print(exact_solution)
