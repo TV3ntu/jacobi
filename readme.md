@@ -1,4 +1,6 @@
-# JACOBI
+# Métodos Numéricos
+## Trabajo Práctico: JACOBI
+## UNSAM, 1er Cuatrimestre 2023
 
 ## Instalacion
 - Accede al directorio del proyecto.
@@ -27,4 +29,10 @@ python3 lu.py
 ```
 
 - Sigue las instrucciones que aparecen en consola.
+
+
+
+## Integrantes del equipo
+- Agustin Narvaez
+- Tomas Venturini
 
